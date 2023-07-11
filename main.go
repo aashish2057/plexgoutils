@@ -2,15 +2,16 @@ package main
 
 import (
 	"fmt"
+	"os"
+
+	"github.com/joho/godotenv"
 
 	"github.com/aashish2057/plexgoutils/server"
 )
 
 func main() {
-
+	godotenv.Load()
 	var s server.Server
-	s.SetUrl("test url")
-	s.SetToken("test token")
-	fmt.Println(s.GetUrl())
-	fmt.Println(s.GetToken())
+	s.SetUrl(os.Getenv("PLEX_URL"))
+	s.SetToken(os.Getenv("PLEX_TOKEN"))
 }
