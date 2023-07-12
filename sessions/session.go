@@ -1,8 +1,9 @@
 package sessions
 
 import (
-	"io/ioutil"
 	"net/http"
+
+	xj "github.com/basgys/goxml2json"
 
 	"github.com/aashish2057/plexgoutils/server"
 )
@@ -23,11 +24,12 @@ func request(url string, method string, token string) (string, error) {
 	}
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := xj.Convert(res.Body)
 	if err != nil {
 		return "", err
 	}
-	return string(body), nil
+
+	return body.String(), nil
 }
 
 func GetActiveSessions(s server.Server) (string, error) {
