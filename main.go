@@ -16,7 +16,7 @@ func main() {
 	server1.SetUrl(os.Getenv("PLEX_URL"))
 	server1.SetToken(os.Getenv("PLEX_TOKEN"))
 
-	res, err := sessions.GetActiveSessions(server1)
+	res, err := sessions.GetTranscodeSessions(server1)
 
 	if err != nil {
 		fmt.Println(err)

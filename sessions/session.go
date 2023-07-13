@@ -57,3 +57,15 @@ func GetSessionHistory(s server.Server) (string, error) {
 		return body, nil
 	}
 }
+
+func GetTranscodeSessions(s server.Server) (string, error) {
+	url := s.GetUrl() + "/transcode/sessions"
+	method := "GET"
+
+	body, err := request(url, method, s.GetToken())
+	if err != nil {
+		return "", err
+	} else {
+		return body, nil
+	}
+}
