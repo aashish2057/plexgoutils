@@ -23,6 +23,7 @@ How to setup the server struct, it it recommended that you use a .env file and l
 
     	server1.GetUrl()
     	server1.GetToken()
+     }
 
 ### Sessions
 
