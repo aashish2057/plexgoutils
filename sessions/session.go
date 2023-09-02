@@ -57,6 +57,7 @@ func GetLibraries(s server.Server) (string, error) {
 		return body, nil
 	}
 }
+
 func GetAccounts(s server.Server) (string, error) {
 	url := s.GetUrl() + "/accounts"
 	method := "GET"
