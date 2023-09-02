@@ -13,10 +13,16 @@ import (
 func main() {
 	godotenv.Load()
 	var server1 server.Server
+	var ombi server.Ombi
 	server1.SetUrl(os.Getenv("PLEX_URL"))
 	server1.SetToken(os.Getenv("PLEX_TOKEN"))
 
-	res, err := sessions.GetActiveSessions(server1)
+	ombi.SetUrl(os.Getenv("OMBI_URL"))
+	ombi.SetKey(os.Getenv("OMBI_APIKEY"))
+
+	fmt.Println(ombi.GetUrl(), ombi.GetKey())
+
+	res, err := sessions.GetAccounts(server1)
 
 	if err != nil {
 		fmt.Println(err)
