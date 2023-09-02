@@ -20,3 +20,24 @@ func (server *Server) GetUrl() string {
 func (server *Server) GetToken() string {
 	return server.token
 }
+
+type Ombi struct {
+	url    string
+	apikey string
+}
+
+func (ombi *Ombi) SetUrl(url string) {
+	ombi.url = url
+}
+
+func (ombi *Ombi) SetKey(apikey string) {
+	ombi.apikey = apikey
+}
+
+func (ombi *Ombi) GetUrl() string {
+	return ombi.url
+}
+
+func (ombi *Ombi) GetKey() string {
+	return ombi.apikey
+}
