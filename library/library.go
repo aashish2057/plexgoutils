@@ -1,4 +1,4 @@
-package sessions
+package library
 
 import (
 	"net/http"
@@ -32,8 +32,8 @@ func request(url string, method string, token string) (string, error) {
 	return body.String(), nil
 }
 
-func GetActiveSessions(s server.Server) (string, error) {
-	url := s.GetUrl() + "/status/sessions"
+func GetLibrarySections(s server.Server) (string, error) {
+	url := s.GetUrl() + "/library/sections/"
 	method := "GET"
 
 	body, err := request(url, method, s.GetToken())
@@ -45,8 +45,8 @@ func GetActiveSessions(s server.Server) (string, error) {
 	}
 }
 
-func GetAccounts(s server.Server) (string, error) {
-	url := s.GetUrl() + "/accounts"
+func GetLibraryItems(s server.Server, section string) (string, error) {
+	url := s.GetUrl() + "/library/sections/" + section + "/all"
 	method := "GET"
 
 	body, err := request(url, method, s.GetToken())
@@ -58,36 +58,12 @@ func GetAccounts(s server.Server) (string, error) {
 	}
 }
 
-func GetSessionHistory(s server.Server) (string, error) {
-	url := s.GetUrl() + "/status/sessions/history/all"
+func GetLibraryItemMetadata(s server.Server, rating_key string) (string, error) {
+	url := s.GetUrl() + "/library/metadata/" + rating_key
 	method := "GET"
 
 	body, err := request(url, method, s.GetToken())
 
-	if err != nil {
-		return "", err
-	} else {
-		return body, nil
-	}
-}
-
-func GetTranscodeSessions(s server.Server) (string, error) {
-	url := s.GetUrl() + "/transcode/sessions"
-	method := "GET"
-
-	body, err := request(url, method, s.GetToken())
-	if err != nil {
-		return "", err
-	} else {
-		return body, nil
-	}
-}
-
-func StopTranscodeSession(s server.Server, sessionKey string) (string, error) {
-	url := s.GetUrl() + "/transcode/sessions/" + sessionKey
-	method := "DELETE"
-
-	body, err := request(url, method, s.GetToken())
 	if err != nil {
 		return "", err
 	} else {
