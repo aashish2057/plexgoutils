@@ -6,8 +6,9 @@ import (
 
 	"github.com/joho/godotenv"
 
+	"github.com/aashish2057/plexgoutils/ombi_server"
 	"github.com/aashish2057/plexgoutils/server"
-	"github.com/aashish2057/plexgoutils/sessions"
+	_ "github.com/aashish2057/plexgoutils/sessions"
 )
 
 func main() {
@@ -20,13 +21,22 @@ func main() {
 	ombi.SetUrl(os.Getenv("OMBI_URL"))
 	ombi.SetKey(os.Getenv("OMBI_APIKEY"))
 
-	fmt.Println(ombi.GetUrl(), ombi.GetKey())
+	// res, err := sessions.GetAccounts(server1)
+	//
+	// if err != nil {
+	// 	fmt.Println(err)
+	// } else {
+	// 	fmt.Println(res)
+	// }
 
-	res, err := sessions.GetAccounts(server1)
+	res1, err1 := ombi_server.GetAllMovieRequests(ombi)
+	// res2, err2 := ombi_server.GetAllTvRequests(ombi)
 
-	if err != nil {
-		fmt.Println(err)
+	if err1 != nil {
+		fmt.Println(err1)
+		// fmt.Println(err2)
 	} else {
-		fmt.Println(res)
+		fmt.Println(res1)
+		// fmt.Println(res2)
 	}
 }
