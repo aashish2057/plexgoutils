@@ -45,6 +45,32 @@ func GetActiveSessions(s server.Server) (string, error) {
 	}
 }
 
+func GetLibraries(s server.Server) (string, error) {
+	url := s.GetUrl() + "/library/sections/1/all"
+	method := "GET"
+
+	body, err := request(url, method, s.GetToken())
+
+	if err != nil {
+		return "", err
+	} else {
+		return body, nil
+	}
+}
+
+func GetAccounts(s server.Server) (string, error) {
+	url := s.GetUrl() + "/accounts"
+	method := "GET"
+
+	body, err := request(url, method, s.GetToken())
+
+	if err != nil {
+		return "", err
+	} else {
+		return body, nil
+	}
+}
+
 func GetSessionHistory(s server.Server) (string, error) {
 	url := s.GetUrl() + "/status/sessions/history/all"
 	method := "GET"
